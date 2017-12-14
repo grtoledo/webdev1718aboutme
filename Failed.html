@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            p, h1 {
+                font-family: Serif;
+                color: white;
+            }
+
+            pre {
+                font-size: 2em;
+            }
+            div { 
+                border: 1px;
+                margin: 4px; 
+                border-radius: 5px; 
+                background-color: #b30000;
+            }
+        </style>
+    </head>
+    <body>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        var baseURL = 'https://data.cityofchicago.org/resource/cm53-g3up.json';
+        var filters = '?status=Open&zip=60618';
+        var url = baseURL + filters;
+        
+        console.log (url);
+        
+        $(
+            $.getJSON(url)
+                .done (function (data) {
+                    console.log(data);
+                    
+                    $.each(data, function(index, value){
+                       var html = "<div><h1>" + value.day + "</h1>" +
+                                    "<p>Status: " + value.park + "<br>" +
+                                ""
+                                    "</p>" +
+                                    "</div>";
+                        $("body").append(html);
+                    });
+                })
+        )
+   
+    </script>
+    </body>
+</html>
+
+<html data-cloud9-id="1"><head></head><body data-cloud9-id="3"><doctype data-cloud9-id="5" html="">
+
+        <script data-cloud9-id="6" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        </script>
+                <script data-cloud9-id="7">
+            $(document).ready(function() {
+                $("button").click(function() {
+                    $.ajax({
+                        url: "https://data.cityofchicago.org/resource/cm53-g3up.json",
+                        success: function(result) {
+                            console.log(result);
+                            var output = "";
+                            
+                            $.each(result, function(index, value){
+                                
+                                output += "<div class='output'> -" + value.title + ". at " + value.park + "</div>";
+                                
+                                $("#results").append(output); 
+                            
+                            });
+                            //$("#results").html(output);
+                        }
+                    })
+                });
+            });
+        </script>
+       
+        <style data-cloud9-id="8">
+            .output{
+                color: white;
+            }
+            p {
+                font-size: 20px;
+                margin-left: 24px;
+                margin-right: 24px;
+            }
+
+        </style>
+
+    <div  id="div1">
+        <center>
+            <h1>
+                Movies in the park 2017
+            </h2>
+        </center>
+    </div>
+
+    <div class = "col-md-12">
+        <center>
+            <p>
+                Chicago parks show movies in the mark. Below is a list of days in which certain parks are showing a movie.    
+            </p>
+        </center>
+    </div>
+  <button >Events</button>
+    
+        <div id="results" id="table">
+        </div>

@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>Towed Vehicles</title>
+        <style>
+            p, h1 {font-family: helvetica;}
+            p {font-size:1.5em;line-height:1.5em; margin-left: 24px;}
+            pre {font-size: 2em;}
+            div { border: 1px solid black; margin: 4px; border-radius: 5px; background-color: #ededed}
+        </style>
+    </head>
+    <body>
+    <h1>Open pot hole service requests</h1>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        /*
+            This script retrieves 311 pot hole service request data for 
+            from the 
+            City of Chicago Data Portal
+            
+            This script doesn't update the DOM.
+
+        */
+
+        // base URL to the food inspections data
+        var baseURL = 'https://swapi.co/api/people';
+        
+        // optional filters we're appending - status
+        var filters = '?status=Open&zip=60618';
+        
+        // full URL
+        var url = baseURL + filters;
+        
+        console.log (url);
+        
+        $(
+            // jQuery command to retrieve json data
+            
+            $.getJSON(url)
+                .done (function (data) {
+                    // TODO:  add script to add data to the DOM
+                    console.log(data);
+
+                    // loop through the records
+                    
+                    $.each(data, function(index, value){
+                       var html = "<div><h1>" + value.type_of_service_request + "</h1>" +
+                                    "<p>Status: " + value.status + "<br>" +
+                                    "Service request number: " + value.service_request_number +
+                                    "</p>" +
+                                    "</div>";
+                                    
+                        $("body").append(html);
+                    });
+                })
+            
+            
+        )
+        
+        
+    </script>
+    </body>
+</html>

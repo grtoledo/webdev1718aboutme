@@ -1,0 +1,166 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+     .purple-background{
+          background-color: #710082;          
+     }
+     h1{
+          font-size:200%;
+          text-align:center;
+          margin: 0px 150px 0px 150px;
+          color: white;
+     }
+     h2{
+          font-size:150%;
+     }
+     mark1{
+          color: black;
+          background-color: #ccff99;
+     }
+
+     .smaller-image{
+          width:200px;
+     }
+     .thin-blue-border{
+          border-color:#00fce4;
+          border-width: 5px;
+          border-style:solid;
+     }
+     .thin-brown-border{
+          border-color:#a64513;
+          border-width: 5px;
+          border-style:solid;
+     }
+     .thin-pink-border{
+          border-color:#ff0056;
+          border-width: 4px;
+          border-style:solid;
+     }
+     #panel, #flip {
+          padding: 5px;
+          text-align: center;
+          background-color: #e5eecc;
+          border: solid 1px #c3c3c3;
+}
+     #panel {
+          padding: 50px;
+          display: none;
+}
+     #box, #hide {
+         padding: 5px;
+         padding-right: 153px;
+         padding-left: 153px;
+         text-align: center;
+         background-color: #e5eecc;
+         border: solid 1px #c3c3c3;
+}
+     #box {
+         padding: 50px;
+         display: none;
+}
+     #square, #fade {
+         padding: 5px;
+         padding-right: 153px;
+         padding-left: 153px;
+         text-align: center;
+         background-color: #e5eecc;
+         border: solid 1px #c3c3c3;
+}
+     #square {
+         padding: 50px;
+         display: none;
+}
+</style>
+
+<script> 
+$(document).ready(function(){
+    $("#flip").click(function(){
+        $("#panel").css("background-color", "#b3f0ff").slideToggle("slow");
+    });
+});
+
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("#box").css("background-color", "#ff4d4d").toggle("slow");
+    });
+});
+
+$(document).ready(function(){
+    $("#fade").click(function(){
+        $("#square").css("background-color", "#fff099").fadeToggle("slow");
+    });
+});
+</script>
+
+<div class = "container-fluid w3-pale-yellow">
+<h1 class="purple-background">
+     All about Me
+</h1>
+
+<h2>
+   <mark1>My interests</mark1>
+</h2>
+
+<div class="container">
+     <div class="row">
+          <div class="col-md-4">
+               <u><b><a href="https://preview.c9users.io/grtoledo/webdev1718aboutme/W3.CSS_Bootstrap/ScienceAchievers.html?_c9_id=livepreview16&_c9_host=https://ide.c9.io">Science Achievers program</a></b></u>
+               <div id="flip">About it</div>
+               <div id="panel">
+                    It is a program that is throughout the whole school year. It teaches you different and fun science activities, such as chemistry through the lens of black and white photography. In addition, you will be earning about 40 service hours just for doing one session, whether in the fall, winter or spring is up to you.
+               </div>
+          </div>
+          <div class="col-md-4">
+               <u><b><a href="https://preview.c9users.io/grtoledo/webdev1718aboutme/W3.CSS_Bootstrap/Reading.html?_c9_id=livepreview15&_c9_host=https://ide.c9.io">Reading</a></b></u>
+               <p>
+                    <button id="hide">About it</button>
+               </p>
+               <p id="box">
+                    Reading takes you to a different world that has endless possiblities. In Harry Potter, you can enter a world of magic.
+               </p>          
+          </div>
+          <div class="col-md-4">
+               <u><b>Listening to Music</b></u>
+               <p>
+                    <button id="fade">About it</button>
+               </p>
+               <p id="square">
+               There are different types of genres and multiple ways people create music. I enjoy listening to almost all of them. Each genre of music has its own history and is always evovling. Some songs tell stories while others send messages, some do both.
+               </p>
+          </div>
+     </div>
+</div>
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1" ></li>
+    <li data-target="#myCarousel" data-slide-to="2" ></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="item active">
+         <img src="http://www.arlingtonpark.com/sites/arlingtonpark.com/files/u13914/msi%20vertical%20logo_0.jpg" alt="Museum of Science and Industry logo">
+    </div>
+    <div class="item">
+         <img scr="http://www.millvalleylibrary.net/blog/wp-content/uploads/2013/04/stacks-of-books.jpg" alt="Stacks of Books">
+    </div>
+    <div class="item">
+         <img scr="http://img.freepik.com/free-vector/pink-headphone-with-music-notes-in-background_1308-3444.jpg?size=338&ext=jpg" alt = "Headphones surrounded my music notes">
+    </div>
+  </div>
+
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+</div>
+
