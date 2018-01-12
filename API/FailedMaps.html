@@ -2,21 +2,15 @@
 <html>
     <head>
         <style>
-            p, h1, #results {
+            #p, #h1 {
                 font-family: Serif;
-                color: white;
-                background-color: #b30000;
+                color: #0066cc;
+            }
+            #div1, #div2 { 
                 border: 1px;
                 margin: 4px; 
                 border-radius: 5px;
-            }
-            pre {
-                font-size: 2em;
-            }
-            div { 
-                border: 1px;
-                margin: 4px; 
-                border-radius: 5px; 
+                background-color: #00cc99;
             }
         </style>
     </head>
@@ -36,8 +30,8 @@
                     console.log(data);
                     
                     $.each(data, function(index, value){
-                       var html = "<div><h1>" + value.day + "</h1>" +
-                                    "<p>Status: " + value.park + "<br>" +
+                       var html = "<div><h1>" + value.latitude + "</h1>" +
+                                    "<p>Status: " + value.longitude + "<br>" +
                                 ""
                                     "</p>" +
                                     "</div>";
@@ -52,7 +46,6 @@
 
 <html data-cloud9-id="1"><head></head><body data-cloud9-id="3"><doctype data-cloud9-id="5" html="">
 
-
         <script data-cloud9-id="6" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
         </script>
                 <script data-cloud9-id="7">
@@ -62,16 +55,14 @@
                         url: "https://data.cityofchicago.org/resource/9rg7-mz9y.json",
                         success: function(result) {
                             console.log(result);
-                            var output;
+                            var output = "";
                             
                             $.each(result, function(index, value){
                                 
-                                //output += "<div class='output'> -Latitude: " + value.latitude + " &  longitude: " + value.longitude + "</div>";
-                                output += [value.latitude, value.longitude];
-                                //$("#results").append(output); 
+                                output += "<div class='output'> {lat: " + value.latitude + ", lng: " + value.longitude + "},</div>";
                                 
-                                var locations = [];
-                                locations.push(output);
+                                $("#results").append(output); 
+                            
                             });
                             //$("#results").html(output);
                         }
@@ -81,7 +72,9 @@
         </script>
        
         <style data-cloud9-id="8">
-            
+            .output{
+                color: black;
+            }
             p {
                 font-size: 20px;
                 margin-left: 24px;
@@ -92,67 +85,106 @@
 
     <div  id="div1">
         <center>
-            <h1>
-                Chicago Police stations
+            <h1 id ="h1">
+                Police Stations
             </h2>
         </center>
-    </div1>
+    </div>
 
-    <div class = "col-md-12">
+    <div class = "col-md-12" id ="div2">
         <center>
-            <p>
-                A list of all the police stations in chicago.    
+            <p id = "p">
+                Location of police stations in Chicago.   
             </p>
         </center>
     </div>
-  <button >Stations</button>
-    <div id="results" id="table">
-    </div>
-        
-    <style>
-        #map {
-            width: 100%;
-            height: 400px;
-        }
-    </style>
-    
-    <h3>My Google Maps Demo</h3>
-    <div id="map"></div>
-    <script>
-        function initMap() {
-            var uluru = {lat: 41.8781, lng: -87.6298};
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 4,
-                center: uluru
-            });
-            var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-            });
-            
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        
-        var markers = locations.map(function(location, i) {
-            return new google.maps.Marker({
-                position: location,
-                label: labels[i % labels.length]
-            });
-        });
-        var markerCluster = new MarkerClusterer(map, markers,
-        {imagePath: 'https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/images/m5.png'});
-        }
-       
-        //var locations = [];
-        //locations.push(output);
-        //var x = value.latitude[s];
-       // var y = value.longitude[t];
-       // for(var z = 0; z< locations.length; z++){
-       //     locations[z].push(x,y);
-       //     s++;
-       //     t++;
-        //}
-        
 
-        </script>
-        <script src="https://raw.githubusercontent.com/googlemaps/v3-utility-library/master/markerclusterer/src/markerclusterer.js"></script>
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrREzEwfQ59pVTyDDecUcHOcD69FGwdVU&callback=initMap"></script>
+    
+        <div id="results" id="table">
+        </div>
+        
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Marker Clustering</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    
+    <script>
+
+      function initMap() {
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: {lat: 41.8781, lng: -87.6298}
+        });
+
+        // Create an array of alphabetical characters used to label the markers.
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        // Add some markers to the map.
+        // Note: The code uses the JavaScript Array.prototype.map() method to
+        // create an array of markers based on a given "locations" array.
+        // The map() method here has nothing to do with the Google Maps API.
+        var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: location,
+            label: labels[i % labels.length]
+          });
+        });
+
+        // Add a marker clusterer to manage the markers.
+        var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      }
+      
+      var locations  = [
+        {lat: 41.85837259, lng: -87.62735617},
+        {lat: 41.88008346, lng: -87.76819989},
+        {lat: 41.80181109, lng: -87.63056018},
+        {lat: 41.97409445, lng: -87.76614884},
+        {lat: 41.76643089, lng: -87.60574786},
+        {lat: 41.99976348, lng: -87.67132429},
+        {lat: 41.92110332, lng: -87.69745182},
+        {lat: 41.75213684, lng: -87.64422891},
+        {lat: 41.86297662, lng: -87.65697251},
+        {lat: 41.90324165, lng: -87.64335214},
+        {lat: 41.77898719, lng: -87.70886382},
+        {lat: 41.91860889, lng: -87.76557448},
+        {lat: 41.70793329, lng: -87.56834912},
+        {lat: 41.85668453, lng: -87.70838196},
+        {lat: 41.83070169, lng: -87.62339535},
+        {lat: 41.97954951, lng: -87.69284451},
+        {lat: 41.69143478, lng: -87.66852039},
+        {lat: 41.87358229, lng: -87.70548813},
+        {lat: 41.69272336, lng: -87.60450587},
+        {lat: 41.96605342, lng: -87.72811456},
+        {lat: 41.83739443, lng: -87.64640771},
+        {lat: 41.94740046, lng: -87.65151202},
+        {lat: 41.77963154, lng: -87.66088702}
+      ]
+
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLEDZxi72zSxXkjf7d2dK06INeQJll7iM&callback=initMap">
+    </script>
+  </body>
+</html>
