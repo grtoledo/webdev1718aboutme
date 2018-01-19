@@ -2,12 +2,164 @@
 <html>
     <head>
         <center>
-            <h1>Abandoned Vehicles</h1>
-            <h2>Pie chart of the 311 Abandoned Vehicle Requests by type</h2>
+            <h1>Abandoned Vehicle Requests</h1>
+            <h2>Pie chart of the 134 Abandoned Vehicle Requests by type</h2>
         </center>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
         
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Vehicle Make Model', 'COUNT Vehicle Make Model'],
+                ['Acura', 1433],
+                ['Aero Glass Boat Co.', 64],
+                ['Alfa Romeo', 6],
+                ['All Terrain - No Vmo', 2],
+                ['American Motors',34],
+                ['(Assembled From Parts,Homemade)', 187],
+                ['Audi', 1048],
+                ['Bentley', 2],
+                ['Bmw', 2227],
+                ['Buick', 5142],
+                ['Cadillac', 3836],
+                ['Campers, Inc.', 45],
+                ['Caterpiller Tractor Co.', 12],
+                ['Chappy (Mfd. By Yamaha Motor Corp.)', 35],
+                ['Chevrolet', 26185],
+                ['Chrysler', 4899],
+                ['Cozy Craft (Mfd. By Travelcraft, Inc.)', 3],
+                ['Craftsmam', 5],
+                ['Daewoo', 69],
+                ['Datsun', 12],
+                ['Deere, John; Deere & Co.', 1],
+                ['Dodge', 10697],
+                ['Doolittle', 4],
+                ['Dune Buggy Open Body', 1],
+                ['Engine', 1],
+                ['Factory Outlet Trailers', 9],
+                ['Fiat', 32],
+                ['Ford', 23957],
+                ['Ford/Escort', 1],
+                ['Ford/Taurus', 1],
+                ['Freightliner Corp.', 51],
+                ['Fruehauf Corp', 1],
+                ['General Motors Corp.', 3344],
+                ['Geo/Metro', 94],
+                ['Geo/Prism', 154],
+                ['Geo/Storm', 8],
+                ['Geo/Truck(Tracker)', 80],
+                ['Go Kart', 1],
+                ['Golf Or Go Cart Or Dune Buggy', 2],
+                ['Great Dane Trailers Inc.', 3],
+                ['Halliburton Co.', 1],
+                ['Harley-Davidson', 87],
+                ['(Homemade Motorcycle, Moped.Etc.)', 288],
+                ['(Homemade Trailer)', 295],
+                ['Honda', 10317],
+                ['Honda/Accord', 1],
+                ['Honda/Civic', 1],
+                ['Humbee Surrey', 23],
+                ['Hyundai', 2417],
+                ['Infiniti/M30', 693],
+                ['Infiniti/Q45', 264],
+                ['International Harvester', 55],
+                ['Isuzu', 475],
+                ['Jaguar', 479],
+                ['Jayco, Inc.', 4],
+                ['Jeep/Cherokee', 3348],
+                ['Jeep (If Mfd. Prior To 1970)', 139],
+                ['Jeep - Year Greater 1988', 1306],
+                ['Kawasaki', 1],
+                ['Kawasaki Motors Corp.', 89],
+                ['Kenworth Motor Truck Co.', 14],
+                ['Kia Motors Corp', 1356],
+                ['Lamborghini/Countach', 1],
+                ['Lamborghini/Jarma', 1],
+                ['Land Rover', 240],
+                ['Legacy Unknown', 2000],
+                ['Lexus', 1391],
+                ['Lincoln', 2218],
+                ['Low Boy Trailer', 12],
+                ['Mack Trucks, Inc.', 34],
+                ['Maserati', 5],
+                ['Mazda', 1944],
+                ['Mazda/929', 2],
+                ['Mercedes', 2217],
+                ['Mercury', 2687],
+                ['Mercury/Topaz', 1],
+                ['Merkur', 3],
+                ['Mg/Midget', 11],
+                ['Mitsubishi', 2105],
+                ['Mobile Home Co.', 37],
+                ['Monon Trailer, Div. Of Evans Products Co.', 297],
+                ['Nash', 2],
+                ['Nimrod Travel Trailer', 5],
+                ['Nissan', 8087],
+                ['Nissan Altima', 1],
+                ['Oldsmobile', 3123],
+                ['Oldsmobile/Cutlass/Ciera', 1],
+                ['Opel', 1],
+                ['Packard', 1],
+                ['Peterbilt Motors Co., Division Paccar, Inc.', 10],
+                ['Peugeot', 3],
+                ['Plymouth', 781],
+                ['Pontiac', 6481],
+                ['Porsche', 125],
+                ['Rambler', 25],
+                ['Range Rover of North America', 22],
+                ['Range Rover Of North America', 135],
+                ['Reconstructed', 3],
+                ['(Reconstructed Motor Home)', 52],
+                ['(Reconstructed Trailers)', 170],
+                ['Renault', 6],
+                ['Renault/Alliance', 1],
+                ['Rolls Royce', 1],
+                ['Rover', 1],
+                ['Saab', 490],
+                ['Saturn', 1826],
+                ['Seagull', 4],
+                ['(See Lancia Make)', 7],
+                ['Snowmobile - No Vmo', 3],
+                ['Starcraft Corp.', 12],
+                ['Stoughton Trailers, Inc.', 1],
+                ['Studebaker', 5],
+                ['Subaru', 867],
+                ['Suzuki', 563],
+                ['Tennessee Trailer', 13],
+                ['Tennesse Trailer', 1],
+                ['Toyota', 10374],
+                ['Toyota/Camry', 1],
+                ['Trailco Mfg. Sales Co., Div. Of Dorsey Trailers', 45],
+                ['Transmission - No Vmo', 2],
+                ['Triumph', 14],
+                ['U-Haul Co, Division Parkhurst Manufacturing Co.', 167],
+                ['(Unlisted Construction Equipment Make)', 209],
+                ['(Unlisted Farm/Garden Equipment Make)', 14],
+                ['(Unlisted Make)', 5609],
+                ['(Unlisted Manufacturer)', 410],
+                ['Van', 1],
+                ['Vehicle Part', 10],
+                ['Vespa', 46],
+                ['Volkswagen', 3424],
+                ['Volvo', 1426],
+                ['Winnebago Industries, Inc.', 24],
+                ['Zcz (Yugoslavia)', 24]
+                ]);
+                
+                var options = {
+                    title: 'Abondanded Vehicles',
+                    is3D: true,
+                };
+                
+                var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+                chart.draw(data, options);
+        }
+        </script>
     </head>
+    
     <body>
-
+        <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
     </body>
 </html>
