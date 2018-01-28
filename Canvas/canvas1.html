@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <body>
+        <center>
+            <canvas id="myCanvas" width="400" height="400" style="border:1px solid #000000;">
+                Your browser does not support the HTML5 canvas tag.
+            </canvas>
+        </center>
+        
+        <script>
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+        
+        // Create gradient
+            var grd = ctx.createRadialGradient(200,200,100,200,200,300);
+            grd.addColorStop(0,"#ffaa00");
+            grd.addColorStop(0.55,"#ff3300");
+            grd.addColorStop(0.66,"#ff0066");
+            grd.addColorStop(1, "#0000cc");
+            // Fill with gradient
+            ctx.fillStyle = grd;
+            ctx.fillRect(0,0,800,800);
+        
+        //Create letter G
+            ctx.moveTo(150, 75);
+            ctx.quadraticCurveTo(15, 60, 10, 225);
+            ctx.quadraticCurveTo(25, 325, 100, 335);
+            ctx.quadraticCurveTo(140, 340, 180, 325);
+            ctx.lineTo(180,362);
+            ctx.quadraticCurveTo(192, 375, 205, 362);
+            ctx.lineTo(205, 250);
+            ctx.quadraticCurveTo(202, 228, 192, 225);
+            ctx.lineTo( 112, 225);
+            ctx.quadraticCurveTo(100, 237, 112, 250);
+            ctx.lineTo(180, 250);
+            ctx.quadraticCurveTo(190, 325, 100, 310);
+            ctx.quadraticCurveTo(50, 300, 35, 225);
+            ctx.quadraticCurveTo(40, 100, 150, 100);
+            ctx.quadraticCurveTo(175, 85, 150, 75);
+            
+            ctx.stroke();
+            
+        //Create letter T
+            ctx.moveTo(200, 75);
+            ctx.quadraticCurveTo(175, 85, 200, 100);
+            ctx.lineTo(250, 100);
+            ctx.quadraticCurveTo(270, 110, 275, 125);
+            ctx.lineTo(275, 350);
+            ctx.quadraticCurveTo(290, 375, 300, 350);
+            ctx.lineTo(300, 125);
+            ctx.quadraticCurveTo(300, 110, 325, 100);
+            ctx.lineTo(375, 100);
+            ctx.quadraticCurveTo(400, 85, 375, 75);
+            ctx.lineTo(200, 75);
+            
+            ctx.lineWidth = 3;
+            ctx.strokeStyle = "#000066";
+            ctx.stroke();
+            
+        </script>
+    </body>
+</html>
