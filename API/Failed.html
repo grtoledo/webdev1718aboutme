@@ -25,29 +25,7 @@
         var baseURL = 'https://data.cityofchicago.org/resource/cm53-g3up.json';
         var filters = '?status=Open&zip=60618';
         var url = baseURL + filters;
-        
-        console.log (url);
-        
-        $(
-            $.getJSON(url)
-                .done (function (data) {
-                    console.log(data);
-                    
-                    $.each(data, function(index, value){
-                       var html = "<div><h1>" + value.day + "</h1>" +
-                                    "<p>Status: " + value.park + "<br>" +
-                                ""
-                                    "</p>" +
-                                    "</div>";
-                        $("body").append(html);
-                    });
-                })
-        )
-   
-    </script>
-    </body>
-</html>
-
+ 
 <html data-cloud9-id="1"><head></head><body data-cloud9-id="3"><doctype data-cloud9-id="5" html="">
 
         <script data-cloud9-id="6" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
