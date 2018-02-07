@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Simple Canvas Example</title>
+		<style>
+			canvas {
+				border: 3px 
+				#f00 
+				solid;
+				}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<canvas id="myCanvas" height="600" width="600"></canvas>
+		</div>
+		
+		<script>
+			var canvas = document.getElementById("myCanvas");
+			var ctx = canvas.getContext("2d");
+			
+			var canvasWidth = canvas.width;
+			var canvasHeight = canvas.height;
+			
+			var xPosOne = -100;
+			var yPosOne = -100
+			
+			var motionTrailLength = 25;
+			var positions = [];
+			function storeLastPosition(xPosOne, yPosOne) {
+				// push an item
+				positions.push({
+					x: xPosOne,
+					y: yPosOne
+				});
+			
+			//get rid of first item
+			if (positions.length > motionTrailLength) {
+				positions.shift();
+				}
+			}
+			
+			
+			
+			function drawCircleOne() {
+				ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+				
+				for (var i = 0; i < positions.length; i++) {
+					var ratio = (i + 1) / positions.length;
+					
+					ctx.beginPath();
+					ctx.arc(positions[i].x, positions[i].y, 50, 0, 2 * Math.PI, true);
+					ctx.fillStyle = "rgba(0, 0, 153, " + ratio / 2 + ")";
+					ctx.fill();
+				}
+				
+				ctx.beginPath();
+				ctx.arc(xPosOne, yPosOne, 35, 0, 2 * Math.PI, true);
+				
+				var grd = ctx.createRadialGradient(300,100,100,300,300,300);
+				grd.addColorStop(.1,"#ffff00");
+				grd.addColorStop(.8, "#66ff66");
+				grd.addColorStop(1,"#00ffff");
+				
+				ctx.fillStyle = grd;
+				ctx.fill();
+				
+				storeLastPosition(xPosOne, yPosOne);
+				
+				xPosOne += 2;
+				if (xPosOne > 700) {
+					xPosOne = -10;
+				}
+				yPosOne += 5;
+				if (yPosOne > 600){
+					yPosOne = 0;
+				}
+				
+				
+				requestAnimationFrame(drawCircleOne);
+			}
+			var xPosTwo = 700;
+			var yPosTwo = -100
+			
+			var motionTrailLength = 25;
+			var positions = [];
+			function storeLastPosition(xPosTwo, yPosTwo) {
+				// push an item
+				positions.push({
+					x: xPosTwo,
+					y: yPosTwo
+				});
+			
+			//get rid of first item
+			if (positions.length > motionTrailLength) {
+				positions.shift();
+				}
+			}
+			
+			
+			
+			function drawCircleTwo() {
+				ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+				
+				for (var i = 0; i < positions.length; i++) {
+					var ratio = (i + 1) / positions.length;
+					
+					ctx.beginPath();
+					ctx.arc(positions[i].x, positions[i].y, 50, 0, 2 * Math.PI, true);
+					ctx.fillStyle = "rgba(102, 0, 255, " + ratio / 2 + ")";
+					ctx.fill();
+				}
+				
+				ctx.beginPath();
+				ctx.arc(xPosTwo, yPosTwo, 35, 0, 2 * Math.PI, true);
+				
+				var grd = ctx.createRadialGradient(300,100,100,300,300,300);
+				grd.addColorStop(.1,"#ffff00");
+				grd.addColorStop(.8, "#66ff66");
+				grd.addColorStop(1,"#00ffff");
+				
+				ctx.fillStyle = grd;
+				ctx.fill();
+				
+				storeLastPosition(xPosTwo, yPosTwo);
+				
+				xPosTwo -= 4;
+				if (xPosTwo < -100) {
+					xPosTwo = 610;
+				}
+				yPosTwo += 10;
+				if (yPosTwo > 600){
+					yPosTwo = 0;
+				}
+				
+				
+				requestAnimationFrame(drawCircleTwo);
+			}
+			
+			drawCircleOne();
+			drawCircleTwo();
+			
+			
+		</script>
+	</body>
+</html>
