@@ -57,12 +57,7 @@
 				ctx.beginPath();
 				ctx.arc(xPosOne, yPosOne, 35, 0, 2 * Math.PI, true);
 				
-				var grd = ctx.createRadialGradient(300,100,100,300,300,300);
-				grd.addColorStop(.1,"#ffff00");
-				grd.addColorStop(.8, "#66ff66");
-				grd.addColorStop(1,"#00ffff");
-				
-				ctx.fillStyle = grd;
+				ctx.fillStyle = "f00";
 				ctx.fill();
 				
 				storeLastPosition(xPosOne, yPosOne);
@@ -82,18 +77,18 @@
 			var xPosTwo = 700;
 			var yPosTwo = -100
 			
-			var motionTrailLength = 25;
-			var positions = [];
+			var motionTrailLength2 = 25;
+			var positions2 = [];
 			function storeLastPosition(xPosTwo, yPosTwo) {
 				// push an item
-				positions.push({
+				positions2.push({
 					x: xPosTwo,
 					y: yPosTwo
 				});
 			
 			//get rid of first item
-			if (positions.length > motionTrailLength) {
-				positions.shift();
+			if (positions2.length > motionTrailLength2) {
+				positions2.shift();
 				}
 			}
 			
@@ -102,11 +97,11 @@
 			function drawCircleTwo() {
 				ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 				
-				for (var i = 0; i < positions.length; i++) {
-					var ratio = (i + 1) / positions.length;
+				for (var s = 0; s < positions2.length; s++) {
+					var ratio = (s + 1) / positions2.length;
 					
 					ctx.beginPath();
-					ctx.arc(positions[i].x, positions[i].y, 50, 0, 2 * Math.PI, true);
+					ctx.arc(positions2[s].x, positions2[s].y, 50, 0, 2 * Math.PI, true);
 					ctx.fillStyle = "rgba(102, 0, 255, " + ratio / 2 + ")";
 					ctx.fill();
 				}
@@ -114,12 +109,12 @@
 				ctx.beginPath();
 				ctx.arc(xPosTwo, yPosTwo, 35, 0, 2 * Math.PI, true);
 				
-				var grd = ctx.createRadialGradient(300,100,100,300,300,300);
-				grd.addColorStop(.1,"#ffff00");
-				grd.addColorStop(.8, "#66ff66");
-				grd.addColorStop(1,"#00ffff");
+				var grd2 = ctx.createRadialGradient(300,100,100,300,300,300);
+				grd2.addColorStop(.1,"#ffff00");
+				grd2.addColorStop(.8, "#66ff66");
+				grd2.addColorStop(1,"#00ffff");
 				
-				ctx.fillStyle = grd;
+				ctx.fillStyle = grd2;
 				ctx.fill();
 				
 				storeLastPosition(xPosTwo, yPosTwo);
