@@ -69,8 +69,19 @@
             ctx.strokeStyle = "#000066";
             ctx.stroke();
             
-           
-            
+            function drawStar(spikes, degrees){
+				
+				ctx.beginPath();
+				for(var q = 1; q<spikes; ++q){
+					ctx.rotate(degrees*(Math.PI/180))
+				}
+				
+				ctx.strokeStyle = "red";
+				ctx.stroke();
+			}
+
+			
+			drawStar(4, Math.Random()*90);
         </script>
     </body>
 </html>

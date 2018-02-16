@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Simple Canvas Example</title>
+		<style>
+			canvas {
+				border: 3px 
+				#000 
+				solid;
+				background-color: #131862
+				}
+		</style>
+	</head>
+	<body>
+	<center>
+		<div id="container">
+			<canvas id="myCanvas" height="600" width="600"></canvas>
+		</div>
+	</center>	
+		<script>
+			var canvas = document.getElementById("myCanvas");
+			var ctx = canvas.getContext("2d");
+			
+			var canvasWidth = canvas.width;
+			var canvasHeight = canvas.height;
+			
+			var xPosOne = (Math.random()*(1000));
+			var yPosOne = (Math.random()+(-100));
+			
+			var motionTrailLength = 25;
+			var cometPositions = [];
+			function storeLastPosition(xPosOne, yPosOne) {
+				// push an item
+				cometPositions.push({
+					x: xPosOne,
+					y: yPosOne
+				});
+			
+			//get rid of first item
+			if (cometPositions.length > motionTrailLength) {
+				cometPositions.shift();
+				}
+			}
+			
+			//draws Comet 
+			function drawComet() {
+				
+				for (var i = 0; i < cometPositions.length; i++) {
+					var ratio = (i + 1) / cometPositions.length;
+					
+					ctx.beginPath();
+					ctx.arc(cometPositions[i].x, cometPositions[i].y, 50, 0, 2 * Math.PI, true);
+					ctx.fillStyle = "rgba(245, 245, 245, " + ratio / 2 + ")";
+					ctx.fill();
+				}
+				
+				ctx.beginPath();
+				ctx.arc(xPosOne, yPosOne, 35, 0, 2 * Math.PI, true);
+				
+				var grd2 = ctx.createRadialGradient(300,100,100,300,300,300);
+				grd2.addColorStop(.1,"#ffff00");
+				grd2.addColorStop(.8, "#66ff66");
+				grd2.addColorStop(1,"#00ffff");
+				
+				ctx.fillStyle = grd2;
+				ctx.fill();
+				
+				storeLastPosition(xPosOne, yPosOne);
+				
+				xPosOne += 3;
+				if (xPosOne > 700) {
+					xPosOne = -10;
+				}
+				yPosOne += 6;
+				if (yPosOne > 600){
+					yPosOne = 0;
+				}
+				
+				
+				requestAnimationFrame(drawComet);
+			}
+			
+			function drawStars(){
+				ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+				
+				var blue = 102;
+				for(var s = 0; s<255; s++){
+					blue = blue + 1;
+					if(blue>255){
+						blue = 102;
+						s = 0;
+					}
+				}
+				
+				var star1X = 50;
+				var star1Y = 100;
+				
+				var star2X = 481;
+				var star2Y = 248;
+				
+				var star3X = 246;
+				var star3Y = 576;
+				
+				var star4X = 523;
+				var star4Y = 405;
+				
+				ctx.beginPath();
+				ctx.moveTo(star1X,star1Y);
+				ctx.lineTo((star1X + 25), (star1Y - 50));
+				ctx.lineTo(star1X + 50, star1Y);
+				ctx.lineTo((star1X + 25), (star1Y + 50));
+				ctx.closePath();
+				
+				ctx.moveTo(star2X,star2Y);
+				ctx.lineTo((star2X + 25), (star2Y - 50));
+				ctx.lineTo(star2X + 50, star2Y);
+				ctx.lineTo((star2X + 25), (star2Y + 50));
+				ctx.closePath();
+				
+				ctx.moveTo(star3X,star3Y);
+				ctx.lineTo((star3X + 25), (star3Y - 50));
+				ctx.lineTo(star3X + 50, star3Y);
+				ctx.lineTo((star3X + 25), (star3Y + 50));
+				ctx.closePath();
+				
+				ctx.moveTo(star4X,star4Y);
+				ctx.lineTo((star4X + 25), (star4Y - 50));
+				ctx.lineTo(star4X + 50, star4Y);
+				ctx.lineTo((star4X + 25), (star4Y + 50));
+				ctx.closePath();
+				
+				ctx.stroke();
+				ctx.fillStyle = "rgb(" + 255 + ", " + 255 + ", " + blue +")";
+				ctx.fill();
+				
+				requestAnimationFrame(drawStars);
+			}
+			
+				drawStars();
+				drawComet();
+			
+		</script>
+	</body>
+</html>
