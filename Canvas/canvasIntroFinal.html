@@ -83,53 +83,15 @@
 				ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 				
 				//draw Stars
-				var star1X = 50;
-				var star1Y = 100;
-				
-				var star2X = 481;
-				var star2Y = 248;
-				
-				var star3X = 246;
-				var star3Y = 576;
-				
-				var star4X = 523;
-				var star4Y = 405;
-				
-				ctx.beginPath();
-				ctx.moveTo(star1X,star1Y);
-				ctx.lineTo((star1X + 25), (star1Y - 50));
-				ctx.lineTo(star1X + 50, star1Y);
-				ctx.lineTo((star1X + 25), (star1Y + 50));
+				ctx.arc(Math.random()*600, Math.random()*600, (Math.random()*10), 0, 2 * Math.PI, false);
 				ctx.closePath();
 				
-				ctx.moveTo(star2X,star2Y);
-				ctx.lineTo((star2X + 25), (star2Y - 50));
-				ctx.lineTo(star2X + 50, star2Y);
-				ctx.lineTo((star2X + 25), (star2Y + 50));
-				ctx.closePath();
-				
-				ctx.moveTo(star3X,star3Y);
-				ctx.lineTo((star3X + 25), (star3Y - 50));
-				ctx.lineTo(star3X + 50, star3Y);
-				ctx.lineTo((star3X + 25), (star3Y + 50));
-				ctx.closePath();
-				
-				ctx.moveTo(star4X,star4Y);
-				ctx.lineTo((star4X + 25), (star4Y - 50));
-				ctx.lineTo(star4X + 50, star4Y);
-				ctx.lineTo((star4X + 25), (star4Y + 50));
-				ctx.closePath();
 				
 				ctx.stroke();
 				ctx.fillStyle = "rgb(" + 255 + ", " + 255 + ", " + 102 +")";
+				
 				ctx.fill();
-				
-				star1X =- 1;
-				star1Y =- 1;
-				
-				ctx.translate(star1X, star1Y);
-				
-				ctx.resetTransform();
+				ctx.strokeStyle = "#131862";
 				
 				requestAnimationFrame(drawStars);
 			}
