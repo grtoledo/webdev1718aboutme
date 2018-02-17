@@ -24,7 +24,7 @@
 			var canvasWidth = canvas.width;
 			var canvasHeight = canvas.height;
 			
-			var xPosOne = (Math.random()*(1000));
+						var xPosOne = (Math.random()*(1000));
 			var yPosOne = (Math.random()+(-100));
 			
 			var motionTrailLength = 25;
@@ -42,7 +42,6 @@
 				}
 			}
 			
-			//draws Comet 
 			function drawComet() {
 				
 				for (var i = 0; i < cometPositions.length; i++) {
@@ -83,15 +82,7 @@
 			function drawStars(){
 				ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 				
-				var blue = 102;
-				for(var s = 0; s<255; s++){
-					blue = blue + 1;
-					if(blue>255){
-						blue = 102;
-						s = 0;
-					}
-				}
-				
+				//draw Stars
 				var star1X = 50;
 				var star1Y = 100;
 				
@@ -130,12 +121,20 @@
 				ctx.closePath();
 				
 				ctx.stroke();
-				ctx.fillStyle = "rgb(" + 255 + ", " + 255 + ", " + blue +")";
+				ctx.fillStyle = "rgb(" + 255 + ", " + 255 + ", " + 102 +")";
 				ctx.fill();
+				
+				star1X =- 1;
+				star1Y =- 1;
+				
+				ctx.translate(star1X, star1Y);
+				
+				ctx.resetTransform();
 				
 				requestAnimationFrame(drawStars);
 			}
-			
+				
+				
 				drawStars();
 				drawComet();
 			
