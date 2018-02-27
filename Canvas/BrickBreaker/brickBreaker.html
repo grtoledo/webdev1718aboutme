@@ -48,6 +48,10 @@
               var brickPadding = 10;
               var brickOffsetTop = 30;
               var brickOffsetLeft = 30;
+              var brickX;
+              var brickY;
+              
+              var score = 0;
               
               function drawBall(){
                    ctx.beginPath();
@@ -76,15 +80,12 @@
               function drawBricks() {
                    for(var c = 0; c < brickColumnCount; c++){
                         for(var r = 0; r < brickRowCount; r++){
-                             var brickX = (c*(brickWidth + brickPadding)) + brickOffsetLeft;
-                             var brickY = (r*(brickHeight + brickPadding)) + brickOffsetTop;
-                             
-                             bricks[c][r].x = 0;
-                             bricks[c][r].y = 0;
-                             
+                             brickX = (c*(brickWidth + brickPadding)) + brickOffsetLeft;
+                             brickY = (r*(brickHeight + brickPadding)) + brickOffsetTop;
+                              
                              if(bricks[c][r].status == 1){
-                                  bricks[c][r].x = 0;
-                                  bricks[c][r].y = 0;
+                                  bricks[c][r].x = brickX;
+                                  bricks[c][r].y = brickY;
                                   ctx.beginPath();
                                   ctx.rect(brickX, brickY, brickWidth, brickHeight);
                                   ctx.fillStyle = "rgb(" + red + ", " + green + ", " + blue +")";
@@ -99,15 +100,34 @@
                    for(var c = 0; c < brickColumnCount; c++){
                         for(var r = 0; r < brickRowCount; r++){
                              var b = bricks[c][r];
-                             
                              if(b.status == 1){
-                                  if(xPos > b.x && xPos < b.x+brickWidth && yPos >b.y && yPos <b.y + brickHeight){
-                                       dy *= -dy;
+                                  if(xPos > b.x && xPos < b.x+brickWidth && yPos > b.y && yPos <b.y + brickHeight){
+                                       dy = -dy;
                                        b.status = 0;
+                                       
+                                       score +=1;
+                                       
+                                       red += 15;
+                                       green += 15;
+                                       blue += 15;
+                                       if(red>255){
+                                            red = 0;
+                                       }
+                                       if(green>255){
+                                            green = 0;
+                                       }
+                                       if(blue>255){
+                                            blue = 0;
+                                       }
                                   }
                              }
                         }
                    }
+              }
+              
+              function drawScore(){
+                   ctx.font = "16px Arial";
+                   ctx.fillText("Score: " + score, 8, 20);
               }
 
               
@@ -118,6 +138,7 @@
                    drawBall();
                    drawPaddle();
                    collisionDetection();
+                   drawScore();
                    
                    xPos += dx;
                    yPos -= dy;
