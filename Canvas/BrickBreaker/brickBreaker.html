@@ -30,6 +30,7 @@
               var dy = -2;
               
               var ballRadius = 10;
+              
               var red = 0;
               var green = 204;
               var blue = 255;
@@ -119,13 +120,13 @@
                                        green += Math.floor(Math.random()*20);
                                        blue += Math.floor(Math.random()*20);
                                        if(red>255){
-                                            red = 0;
+                                            red = Math.floor(Math.random()*255);
                                        }
                                        if(green>255){
-                                            green = 0;
+                                            green = Math.floor(Math.random()*255);
                                        }
                                        if(blue>255){
-                                            blue = 0;
+                                            blue = Math.floor(Math.random()*255);
                                        }
                                   }
                              }
