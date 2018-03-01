@@ -23,9 +23,10 @@
               var ctx = canvas.getContext("2d");
               var canvasWidth = canvas.width;
               var canvasHeight = canvas.height;
-
-              var xPos = (canvasWidth/2);
-              var yPos = ((canvasHeight/2)-25);
+              
+              var randomDivision = Math.floor(Math.random()*4);
+              var xPos = (canvasWidth/randomDivision);
+              var yPos = ((canvasHeight/randomDivision)-25);
               var dx = 4;
               var dy = -2;
               
