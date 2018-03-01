@@ -2,7 +2,7 @@
 <html>
     <head>
          <center>
-              <title>Brick Breaker Index</title>
+              <title>Brick Breaker Game</title>
          </center>
          
          <style>
@@ -17,7 +17,7 @@
          <center>
               <canvas id="myCanvas" height="520" width="480"></canvas>
          </center>
-         
+         <img hidden id="sky" width="canvas.width" height="canvas.height" src="http://longwallpapers.com/Desktop-Wallpaper/sky-wallpaper-hd-resolution-For-Desktop-Wallpaper.jpg" alt="Sky">
          <script>
               var canvas = document. getElementById("myCanvas");
               var ctx = canvas.getContext("2d");
@@ -139,9 +139,15 @@
                    ctx.fillText("Score: " + score, 8, 20);
               }
               
+              function image(){
+                   var img = document.getElementById("sky");
+                   ctx.drawImage(img, 0, 0);
+              }
+              
               function draw(){
                    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
                    
+                   image();
                    drawBricks();
                    drawBall();
                    drawPaddle();
