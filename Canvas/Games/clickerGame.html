@@ -2,8 +2,91 @@
 <html>
     <head>
         <title>Clicker Game</title>
+    <style>
+              canvas{
+                   padding: 0;
+                   margin: 0;
+                   background-color: #eee;
+              }
+         </style>
     </head>
     <body>
-
+         <center>
+              <canvas id="myCanvas" height="360" width="450"></canvas>
+              
+              <img hidden id="pileOfPaperClips" width="canvas.width" height="canvas.height" src="https://us.123rf.com/450wm/eric1513/eric15131401/eric1513140100025/24959920-detail-closeup-pile-of-paperclips-paper-clips.jpg?ver=6" alt="Pile of paper clips">
+              <img hidden id="paperClip" width="50" height="25" src="http://www.clker.com/cliparts/5/4/a/d/11971495411551810988valessiobrito_Paper_Clip.svg" alt="Paper Clip">
+              
+              <button onclick="location.reload()">Restart</button>
+         </center>
+         
+         
+         <script>
+              var canvas = document.getElementById("myCanvas");
+              var ctx = canvas.getContext("2d");
+              var canvasWidth = canvas.width;
+              var canvasHeight = canvas.height;
+              
+              var xRandPos = Math.floor(Math.random()*(canvasWidth-100));
+              var yRandPos = Math.floor(Math.random()*(canvasHeight-100))+20;
+              
+              var clipWidth = Math.floor(Math.random()*50)+50;
+              var clipHeight= Math.floor(Math.random()*25)+50;
+              
+              var imgPaperClip = document.getElementById("paperClip");
+              
+              var score = 0;
+              var lives = 3;
+              
+              function imagePileOfPaperClips(){
+                   var imgPileOfPaperClips = document.getElementById("pileOfPaperClips");
+                   ctx.drawImage(imgPileOfPaperClips, 0, 20);
+              }
+              
+              function imagePaperClip(){
+                   ctx.drawImage(imgPaperClip, xRandPos, yRandPos, clipWidth, clipHeight);
+              }
+              
+              function drawScoreAndLives(){
+                   ctx.font = "16px Arial";
+                   ctx.fillText("Score: " + score, canvasWidth-70, 16);
+                   ctx.fillText("Lives: " + lives, 8, 16);
+              }
+              
+              document.getElementById("myCanvas").addEventListener("click", myFunction);
+              
+              function myFunction(event) {
+                   var xPos = event.clientX;
+                   var yPos = event.clientY;
+                   
+                   if((xPos< xRandPos && xPos> xRandPos + clipWidth) && (yPos< yRandPos && yPos> yRandPos + clipHeight)){
+                        score--;
+                        
+                        alert ("Hello World!");
+                   }
+                   else{
+                        score ++;
+                   }
+                   
+                   
+                   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+                   
+                   xRandPos = Math.floor(Math.random()*(canvasWidth-100));
+                   yRandPos = Math.floor(Math.random()*(canvasHeight-100))+20;
+                   
+                   draw();
+              }
+              
+              function draw(){
+                  ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+                  
+                  //imagePileOfPaperClips();
+                  drawScoreAndLives();
+                  imagePaperClip();
+                  
+              }
+              
+              draw();
+        </script>
     </body>
 </html>
