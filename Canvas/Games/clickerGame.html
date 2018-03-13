@@ -38,6 +38,10 @@
               var score = 0;
               var lives = 3;
               
+              var check = Math.floor((Math.random()*7) + 3);
+              
+              alert("Find the paperclip in the pile of paperclips that is different " + check +" times!");
+              
               function imagePileOfPaperClips(){
                    var imgPileOfPaperClips = document.getElementById("pileOfPaperClips");
                    ctx.drawImage(imgPileOfPaperClips, 0, 20);
@@ -45,6 +49,7 @@
               
               function imagePaperClip(){
                    ctx.drawImage(imgPaperClip, xRandPos, yRandPos, clipWidth, clipHeight);
+                   
               }
               
               function drawScoreAndLives(){
@@ -56,16 +61,26 @@
               document.getElementById("myCanvas").addEventListener("click", myFunction);
               
               function myFunction(event) {
-                   var xPos = event.clientX;
-                   var yPos = event.clientY;
                    
-                   if((xPos< xRandPos && xPos> xRandPos + clipWidth) && (yPos< yRandPos && yPos> yRandPos + clipHeight)){
-                        score--;
+                   if((event.clientX< xRandPos || event.clientX> (xRandPos + clipWidth)) && (event.clientY< yRandPos || event.clientY> (yRandPos + clipHeight))){
+                        lives --;
                         
-                        alert ("Hello World!");
+                        alert ("Wrong paperclip. Try again!");
+                        
+                        if(lives==0){
+                             alert("Game Over! You lost all your lives. Want to try again?");
+                             document.location.reload();
+                        }
+                        
                    }
                    else{
                         score ++;
+                        
+                        if(score == check){
+                             alert("You won! You clicked found the paperclip " + score + " times!\nCongragutlations!");
+                             document.location.reload();
+                             
+                        }
                    }
                    
                    
@@ -74,13 +89,16 @@
                    xRandPos = Math.floor(Math.random()*(canvasWidth-100));
                    yRandPos = Math.floor(Math.random()*(canvasHeight-100))+20;
                    
+                   clipWidth = Math.floor(Math.random()*50)+50;
+                   clipHeight= Math.floor(Math.random()*25)+50;
+                   
                    draw();
               }
               
               function draw(){
                   ctx.clearRect(0, 0, canvasWidth, canvasHeight);
                   
-                  //imagePileOfPaperClips();
+                  imagePileOfPaperClips();
                   drawScoreAndLives();
                   imagePaperClip();
                   
