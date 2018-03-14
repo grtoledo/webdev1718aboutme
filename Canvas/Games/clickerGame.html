@@ -40,7 +40,7 @@
               
               var check = Math.floor((Math.random()*7) + 3);
               
-              alert("Find the paperclip in the pile of paperclips that is different " + check +" times!");
+              alert("Find the paperclip in the pile of paper clips that is different " + check +" times!");
               
               function imagePileOfPaperClips(){
                    var imgPileOfPaperClips = document.getElementById("pileOfPaperClips");
@@ -68,8 +68,8 @@
                         alert ("Wrong paperclip. Try again!");
                         
                         if(lives==0){
-                             alert("Game Over! You lost all your lives. Want to try again?");
-                             document.location.reload();
+                             alert("Game Over! You lost all your lives. \nWant to try again? Click the restart button.");
+                             
                         }
                         
                    }
@@ -78,7 +78,7 @@
                         
                         if(score == check){
                              alert("You won! You clicked found the paperclip " + score + " times!\nCongragutlations!");
-                             document.location.reload();
+                             alert("If you want to play again click the restart button!");
                              
                         }
                    }
