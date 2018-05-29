@@ -18,7 +18,7 @@
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
-        var baseURL = 'https://data.cityofchicago.org/resource/9rg7-mz9y.json';
+        var baseURL = 'http://docs.opendining.net/api/swagger/resources/restaurants.js';
         var filters = '?status=Open&zip=60618';
         var url = baseURL + filters;
         
@@ -30,8 +30,8 @@
                     console.log(data);
                     
                     $.each(data, function(index, value){
-                       var html = "<div><h1>" + value.latitude + "</h1>" +
-                                    "<p>Status: " + value.longitude + "<br>" +
+                       var html = "<div><h1>" + value.name + "</h1>" +
+                                    "<p>Status: " + value.address + "<br>" +
                                 ""
                                     "</p>" +
                                     "</div>";
@@ -52,7 +52,7 @@
             $(document).ready(function() {
                 $("button").click(function() {
                     $.ajax({
-                        url: "https://data.cityofchicago.org/resource/9rg7-mz9y.json",
+                        url: "http://docs.opendining.net/api/swagger/resources/restaurants.js",
                         success: function(result) {
                             console.log(result);
                             var output = "";
