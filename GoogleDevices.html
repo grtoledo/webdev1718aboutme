@@ -3,9 +3,30 @@
     <head>
         <title>Web Fundamentals</title>
     </head>
+    
+    <style>
+        #goFS:-webkit-full-screen #goFS {
+            display: none;
+        }
+        
+        #goFS:-moz-full-screen #goFS {
+            display: none;
+        }
+        
+        #goFS:-ms-fullscreen #goFS {
+            display: none;
+        }
+        
+        #goFS:fullscreen #goFS {
+            display: none;
+        }
+    </style>
+    
+<div class="container-fluid">   
+    <center>
     <body>
 <!-- Using the Camera -->
-        <center><h>Using the Camera</h></center>
+        <h id = "title">Using the Camera</h>
         <br>
         <br>
         <script>
@@ -50,6 +71,8 @@
             
             <br>
             <textarea id="target">Paste an image here</textarea>
+            <br>
+            <br>
             
             <script>
                 const target = document.getElementById('target');
@@ -61,7 +84,6 @@
             </script>
             
             <img id="output">
-            <p> img id output</p>
             <script>
                 const output = document.getElementById('output');
                 
@@ -130,7 +152,7 @@
 <!-- Handling User Location -->
         <br>
         <br>
-        <center><h>Using User Location</h></center>
+        <h id = "title">Using User Location</h>
         <br>
         <br>
         
@@ -301,9 +323,63 @@
         </script>
 
 <!-- Device Orientation & Motion -->
-        <center><h>Device Orientation & Motion</h></center>
+        <h id = "title">Device Orientation & Motion</h>
         <br>
         <br>
+        
+        <!-- Check for support and listen for events -->
+        <script>
+            if (window.DeviceOrientationEvent) {
+                window.addEventListener('deviceorientation', deviceOrientationHandler, false);
+                document.getElementById("doeSupported").innerText = "Supported!";
+            }
+            
+            if (window.DeviceMotionEvent) {
+                window.addEventListener('devicemotion', deviceMotionHandler);
+                setTimeout(stopJump, 3*1000);
+            }
+        </script>
+        
+        <!-- Calculating the maximum acceleration of an object -->
+        <script>
+            if (evt.acceleration.x > jumpMax.x) {
+                jumpMax.x = evt.acceleration.x;
+            }
+            if (evt.acceleration.y > jumpMax.y) {
+                jumpMax.y = evt.acceleration.y;
+            }
+            if (evt.acceleration.z > jumpMax.z) {
+                jumpMax.z = evt.acceleration.z;
+            }
+        </script>
+
+<!-- Making Fullscreen Experience -->
+        <h id = "title">Making Fullscreen Experience</h>
+        <br>
+        <br>
+        
+        <!-- Making a video element fullscreen -->
+        <div id="container">
+            <video></video>
+            <div>
+                <button>Play</button>
+                <button>Stop</button>
+                <button id="goFS">Go fullscreen</button>
+            </div>
+        </div>
+        
+        <script>
+            var goFS = document.getElementById("goFS");
+            goFS.addEventListener("click", function() {
+                var container = document.getElementById("container");
+                container.requestFullscreen();
+            }, false);
+        </script>
+        
+        <!--  -->
+        <script>
+            
+        </script>
         
         <!--  -->
         <script>
@@ -320,4 +396,6 @@
             
         </script>
     </body>
+    </center>
+</div> 
 </html>
