@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    
+    <!-- https://www.html5rocks.com/en/tutorials/getusermedia/intro/ -->
+    
+    
+    <body>
+        <!-- Checks if camera is available using getUserMedia() -->
+        <script>
+            function hasGetUserMedia() {
+                return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+            }
+            
+            if (hasGetUserMedia()) {
+                // Good to go!
+            } else {
+                alert('getUserMedia() is not supported by your browser');
+            }
+        </script>
+
+        <!-- Fallback in case user doesn't support getUserMedia() -->
+        <script>
+            function fallback() {
+                video.src = 'fallbackvideo.webm';
+            }
+            
+            function success(stream) {
+                video.srcObject = stream;
+            }
+            
+            if (!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
+                fallback();
+            } else {
+                navigator.getUserMedia({video: true}, success, fallback);
+            }
+        </script>
+        
+        <video autoplay></video>
+        
+        <!-- Gain access for input device -->
+        <script>
+            const constraints = {
+                video: true
+            };
+            
+            const video = document.querySelector('video');
+            
+            function handleSuccess(stream) {
+                video.srcObject = stream;
+            }
+            
+            function handleError(error) {
+                console.error('Reeeejected!', error);
+            }
+            
+            navigator.mediaDevices.getUserMedia(constraints).
+            then(handleSuccess).catch(handleError);
+        </script>
+        
+        <video autoplay></video>
+<img src="">
+<canvas style="display:none;"></canvas>
+
+<script>
+  const button = document.querySelector('#screenshot-button');
+  const img = document.querySelector('#screenshot-img');
+  const video = document.querySelector('#screenshot-video');
+
+  const canvas = document.createElement('canvas');
+
+  button.onclick = video.onclick = function() {
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    canvas.getContext('2d').drawImage(video, 0, 0);
+    // Other browsers will fall back to image/png
+    img.src = canvas.toDataURL('image/webp');
+  };
+
+  function handleSuccess(stream) {
+    video.srcObject = stream;
+  }
+
+  navigator.mediaDevices.getUserMedia(constraints).
+      then(handleSuccess).catch(handleError);
+</script>
+        
+        <button id="screenshot-button">Capture</button>
+    </body>
+</html>
