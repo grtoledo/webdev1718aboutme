@@ -129,34 +129,38 @@
                     player.srcObject = stream;
                 });
             </script>
-            <p>Take a screenshot using the Capture Button</p>
-            <button id="capture">Capture</button>
+            
+            <p>Take a screenshot using the button below</p>
             <canvas id="canvas" width=320 height=240></canvas>
             
+            <img src="">
+            <canvas style="display:none;"></canvas>
+            
             <script>
-            const player = document.getElementById('player');
-            const canvas = document.getElementById('canvas');
-            const context = canvas.getContext('2d');
-            const captureButton = document.getElementById('capture');
-            
-            const constraints = {
-                video: true,
-            };
-            
-            captureButton.addEventListener('click', () => {
-                // Draw the video frame to the canvas.
-                context.drawImage(player, 0, 0, canvas.width, canvas.height);
+                const button = document.querySelector('#screenshot-button');
+                const img = document.querySelector('#screenshot-img');
+                const video = document.querySelector('#screenshot-video');
+                const canvas = document.createElement('canvas');
                 
-                // Stop all video streams.
-                player.srcObject.getVideoTracks().forEach(track => track.stop());
-            });
-            
-            // Attach the video stream to the video element and autoplay.
-            navigator.mediaDevices.getUserMedia(constraints)
-            .then((stream) => {
-                player.srcObject = stream;
-            });
+                button.onclick = video.onclick = function() {
+                    canvas.width = video.videoWidth;
+                    canvas.height = video.videoHeight;
+                    canvas.getContext('2d').drawImage(video, 0, 0);
+                    // Other browsers will fall back to image/png
+                    img.src = canvas.toDataURL('image/webp');
+                };
+                function handleSuccess(stream) {
+                    video.srcObject = stream;
+                }
+                
+                navigator.mediaDevices.getUserMedia(constraints).
+                then(handleSuccess).catch(handleError);
             </script>
+            
+                <video id="screenshot-video" class="videostream" autoplay=""></video>
+                <img id="screenshot-img">
+                <p><button id="screenshot-button">Take screenshot</button></p>
+                
 
 <!-- Handling User Location -->
         <br>
